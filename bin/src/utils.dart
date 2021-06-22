@@ -34,11 +34,6 @@ double threshold(value, threshold) {
   return value > threshold ? 1 : 0;
 }
 
-// Derivative of Sigmoid Function
-// double sigmoidDerivative(double x) {
-//   return sigmoid(x) * (1 - sigmoid(x));
-// }
-
 // Used for Backpropagation
 double squaredError(double output, double target) {
   return (0.5 * math.pow(2, (target - output))).toDouble();

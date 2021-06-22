@@ -1,8 +1,0 @@
-{
-  "type": "MLP",
-  "input": 2,
-  "hiddens": [
-    4
-  ],
-  "output": 1
-}

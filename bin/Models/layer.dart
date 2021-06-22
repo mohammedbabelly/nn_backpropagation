@@ -17,17 +17,6 @@ class Layer {
       if (ws != null) {
         this.neurons.add(Neuron.hidden(ws[i], bias, biasesWeights[i]));
       }
-      /*else {
-        //delete
-        List<double> weights = [];
-        for (var j = 0; j < weights_per_neuron; j++) {
-          weights.add(utils.randomWeight(
-              -2.4 ~/ weights_per_neuron, 2.4 ~/ weights_per_neuron));
-          // weights.add(utils.randomWeight(Neuron.min_weight, Neuron.max_weight));
-        }
-        double bias = utils.randomWeight(0, 1);
-        // this.neurons.add(Neuron.hidden(weights, bias));
-      }*/
     }
   }
 }

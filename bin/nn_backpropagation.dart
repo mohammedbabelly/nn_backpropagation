@@ -38,13 +38,10 @@ void main(List<String> arguments) async {
   print('============');
   for (var i in dataset.pairs) {
     forward(i.input_data);
-    // print('inputs ${i.input_data}');
     var out = nn.layers[layers_n - 1].neurons.map((e) => e.value).toList();
-    // var out = nn.layers[layers_n - 1].neurons[0].value;
     print('output: ' +
         utils.deNormalizeData(out).toString() +
         ' desired = ${i.output_data}');
-    // afterData.add(utils.deNormalizeData(out)[output_n - 1]);
   }
   print('============');
   print('Predictiong');
@@ -56,22 +53,11 @@ void predict() async {
   var datapredict = await loadDataset('test.txt');
   for (var i in datapredict.pairs) {
     forward(i.input_data);
-    // print('for: ${i.input_data}');
     var out = nn.layers[layers_n - 1].neurons.map((e) => e.value).toList();
     var desired = utils.deNormalizeData(i.output_data);
-    // var sortedOut = <double>[];
-    // out.forEach((e) => sortedOut.add(e));
-    // var predictIndex = -1;
-    // sortedOut.sort();
-    // for (int i = 0; i < out.length; i++) {
-    //   if (out[i] == sortedOut[1]) predictIndex = i + 1;
-    // }
     print('predict: ' +
         utils.deNormalizeData(out).toString() +
         ", desired: $desired}");
-    // print('predict: ' +
-    //     utils.deNormalizeData(out).toString() +
-    //     ", desired: $desired}");
   }
 }
 
@@ -109,28 +95,6 @@ Future<Dataset> loadDataset(filename, {bool write = false}) async {
   // if (write)
   //   await File('datasets/$datasetName/test/test.txt').writeAsString(toWrite);
   return dataset;
-}
-
-List<double> _encodeOutPut(int last) {
-  var res = <double>[];
-  switch (last) {
-    case 1:
-      {
-        res = [1.0, 0.0, 0.0];
-        break;
-      }
-    case 2:
-      {
-        res = [0.0, 1.0, 0.0];
-        break;
-      }
-    case 3:
-      {
-        res = [0.0, 0.0, 1.0];
-        break;
-      }
-  }
-  return res;
 }
 
 List<List<double>> _generateWeights(int fi, int n) {

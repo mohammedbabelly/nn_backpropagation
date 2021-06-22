@@ -1,4 +1,3 @@
-import '../nn_backpropagation.dart';
 import 'dataset.dart';
 import 'layer.dart';
 import 'neuron.dart';
@@ -58,7 +57,6 @@ void backward(double learning_rate, Pair datas) {
     double output = nn.layers[output_layer_index].neurons[i].value;
     double target = datas.output_data[i];
     double e = target - output;
-    // if (e <= loss) continue;
     double delta = e * (output * (1 - output));
     nn.layers[output_layer_index].neurons[i].gradient = delta;
 
@@ -126,18 +124,12 @@ double sumGradient(NeuralNetwork nn, int n_index, int l_index) {
 void train(Dataset dt, int epochs, double learning_rate) {
   epochsLoop:
   for (int i = 0; i < epochs; i++) {
-    // print("epoch:  $i");
     for (int j = 0; j < dt.pairs.length; j++) {
       forward(dt.pairs[j].input_data, desired: dt.pairs[j].output_data[0]);
       if (sumSqError <= loss) {
         print('breaked at epoch ${i + 1}');
         break epochsLoop;
       }
-      // else
-      // print('sumSqError = $sumSqError');
-      // var actual = nn.layers[layers_n - 1].neurons[0].value;
-      // var desired = dt.pairs[j].output_data[0];
-      // if (desired - actual <= loss) continue;
       backward(learning_rate, dt.pairs[j]);
     }
   }
